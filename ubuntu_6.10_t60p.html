@@ -1,0 +1,295 @@
+<html><head><title>Installing Ubuntu 6.10 on a Thinkpad T60p</title></head><body>
+    <center>
+      <h1>Installing Ubuntu 6.10 (Edgy) on a Thinkpad T60p</h1>
+    </center>
+      <p>Last Updated:12/18/2006</p>
+      <h2>Contents</h2>
+      <div style="margin-left: 20px;">
+        <ulist>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#ubuntuinstallation">Ubuntu Installation</a></li>
+          <li><a href="#networkconfiguration">Network Configuration</a></li>
+          <li><a href="#x11configuration">X11 configuration</a></li>
+	  <li><a href="#general">General Info</a></li>
+          <li><a href="#contentinfo">Content Info</a></li>
+	  <li><a href="#resources">Resources</a></li>
+        </ulist>
+      </div>
+      <h2><a name="introduction">Introduction</a></h2>
+      <div style="margin-left: 20px;">
+        <p>
+          Staring out with a new laptop I've decided to go linux all the way this time.  I've decided to use Ubuntu as my distro of choice.  This is my first time with both the T60p and Ubuntu.  To set the stage I was given a new T60p that has been imaged by the IT staff with an 11GB XP image.  I have chosen to not use that install and instead started straight to Ubuntu 6.10 - Edge Eft.  
+        </p>
+        <p>
+          These are the steps I took to setup my system.  There are NO GUARANTEES or WARENTEES associated with these instructions.  Use at your own risk.
+        </p>
+        <h3><a name="systemspecs">System Specs</a></h3>
+        <div style="margin-left: 40px;">
+          <p>
+            General Hardware Specifications of  T60p:
+          </p>
+          <div style="margin-left: 60px;">
+       
+
+
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="33%">
+      <div class="headings" align="center">Hardware Components</div>
+      </td>
+      <td width="33%">
+      <div class="headings" align="center">Status under Linux</div>
+
+      </td>
+      <td width="33%">
+      <div class="headings" align="center">Notes</div>
+      </td>
+    </tr>
+    <tr>
+      <td width="33%">Intel Core Duo 2.16 GHz CPU</td>
+      <td width="33%">Works</td>
+
+      <td width="33%">No special procedure required during installation.</td>
+    </tr>
+    <tr>
+      <td width="33%">14.1 inch TFT Display with 1400x1050 resolution</td>
+      <td width="33%">Works</td>
+      <td width="33%">Select Generic LCD Display in Installer</td>
+    </tr>
+
+    <tr>
+      <td width="33%">ATI Mobility FireGL V5200</td>
+      <td width="33%">Works</td>
+      <td width="33%">Download ATI Linux driver</td>
+    </tr>
+    <tr>
+      <td width="33%">3GB RAM</td>
+
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+    </tr>
+    <tr>
+      <td width="33%">100 GB SATA Drive</td>
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+
+    </tr>
+    <tr>
+
+      <td width="33%">Intel Gigabit Ethernet</td>
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+    </tr>
+    <tr>
+      <td width="33%">Internal 56k Modem</td>
+      <td width="33%">Untested</td>
+
+      <td width="33%">In progress</td>
+    </tr>
+    <tr>
+      <td width="33%">DVD Multi-Recorder Drive</td>
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+    </tr>
+
+    <tr>
+      <td width="33%">Atheros Communications, Inc. AR5212 802.11abg NIC 	
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+    </tr>
+
+    <tr>
+      <td width="33%">UltraNav (Trackpoint/Touchpad combo)</td>
+
+      <td width="33%">Works</td>
+      <td width="33%">No special procedure required during installation</td>
+    </tr>
+    <tr>
+      <td width="33%">AD1981HD Audio</td>
+      <td width="33%">Works</td>
+      <td width="33%">
+      <p>No special procedure required if using Kernel 2.6.x. </p>
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+          </div>
+          <p>
+            If there's something you want to figure out that I don't discuss here, you
+            should check
+            <a href="http://www.linux-on-laptops.com/">Linux On Laptops</a>
+            and/or
+            <a href="http://www.thinkwiki.org/wiki/Category:T60p">the ThinkWiki
+            T60p page</a>.
+          </p>
+        </div>
+        <h3><a name="lspcioutput"><tt>lspci</tt> Output</a></h3>
+        <div style="margin-left: 40px;">
+          <pre>
+00:00.0 Host bridge: Intel Corporation Mobile 945GM/PM/GMS/940GML and 945GT Express Memory Controller Hub (rev 03)
+00:01.0 PCI bridge: Intel Corporation Mobile 945GM/PM/GMS/940GML and 945GT Express PCI Express Root Port (rev 03)
+00:1b.0 Audio device: Intel Corporation 82801G (ICH7 Family) High Definition Audio Controller (rev 02)
+00:1c.0 PCI bridge: Intel Corporation 82801G (ICH7 Family) PCI Express Port 1 (rev 02)
+00:1c.1 PCI bridge: Intel Corporation 82801G (ICH7 Family) PCI Express Port 2 (rev 02)
+00:1c.2 PCI bridge: Intel Corporation 82801G (ICH7 Family) PCI Express Port 3 (rev 02)
+00:1c.3 PCI bridge: Intel Corporation 82801G (ICH7 Family) PCI Express Port 4 (rev 02)
+00:1d.0 USB Controller: Intel Corporation 82801G (ICH7 Family) USB UHCI #1 (rev 02)
+00:1d.1 USB Controller: Intel Corporation 82801G (ICH7 Family) USB UHCI #2 (rev 02)
+00:1d.2 USB Controller: Intel Corporation 82801G (ICH7 Family) USB UHCI #3 (rev 02)
+00:1d.3 USB Controller: Intel Corporation 82801G (ICH7 Family) USB UHCI #4 (rev 02)
+00:1d.7 USB Controller: Intel Corporation 82801G (ICH7 Family) USB2 EHCI Controller (rev 02)
+00:1e.0 PCI bridge: Intel Corporation 82801 Mobile PCI Bridge (rev e2)
+00:1f.0 ISA bridge: Intel Corporation 82801GBM (ICH7-M) LPC Interface Bridge (rev 02)
+00:1f.1 IDE interface: Intel Corporation 82801G (ICH7 Family) IDE Controller (rev 02)
+00:1f.2 SATA controller: Intel Corporation 82801GBM/GHM (ICH7 Family) Serial ATA Storage Controller AHCI (rev 02)
+00:1f.3 SMBus: Intel Corporation 82801G (ICH7 Family) SMBus Controller (rev 02)
+01:00.0 VGA compatible controller: ATI Technologies Inc Unknown device 71c4
+02:00.0 Ethernet controller: Intel Corporation 82573L Gigabit Ethernet Controller
+03:00.0 Ethernet controller: Atheros Communications, Inc. AR5212 802.11abg NIC (rev 01)
+15:00.0 CardBus bridge: Texas Instruments PCI1510 PC card Cardbus Controller
+
+          </pre>
+        </div>
+      </div>
+
+
+      <h2><a name="ubuntuinstallation">Ubuntu Installation</a></h2>
+      <div style="margin-left: 20px;">
+        <p>
+          Downloaded the Ubuntu cd from here: <a href="http://www.ubuntu.com/"> Ubuntu.com </a>.  The live cd booted up perfectly for me so I started the install process and let it run.  I chose all the defaults except for partitioning.
+        </p>
+	<p>
+        <h3><a name="diskpartitioning">Disk Partitioning</a></h3>
+        <div style="margin-left: 40px;">
+          <p>
+            The system I recieved was partioned with a 11gb XP image and the 89 GB space was left open.  I partioned this to a 3 GB Swap space, 1 gb /boot, a 30 Gb primary disk and a 50 gb disk which I plan to partion later. I kept the XP image just in case I would need it later.  This led to the pleasant surprise the Ubuntu automagically mounts the XP drive in read-only mode.  Not something I need but useful all the same.
+          </p>
+
+	<p> I usually make use of a drive sled with a spare HD.  As a test I was able to load the sled with a NTFS based HD from my T40.  The drive mounts as /dev/hda1.
+
+        </div>
+
+      </div>
+      <h2><a name="networkconfiguration">Network Configuration</a></h2>
+      <div style="margin-left: 20px;">
+        <p>
+          Both the onboard Ethernet and Wifi Worked out of the box with no problems.  I am still getting a handle on how Ubuntu handles the network controls.  I have installed wifi-radar from the Ubuntu Universe repositories to help me with the wireless connections.  Currently the DHCP settings for eth0 work perfectly. 
+        </p>
+
+	<p>
+	Error on my part that I felt was worth noting, due to the way I was starting the Wireless driver, eth0 and ath0/wifi0 were both running at the same time.  As a result even though eth0 didn't have a connection, it would wake up every so often to find a DHCP address, messing up the routing for the working wireless connection (achieving 33% packet loss across a few hours).  Turning off the eth0 (ifconfig eth0 down) fixed the issue for me.
+	</p> 
+        </div>
+      </div>
+
+
+      </div>
+      <h2><a name="x11configuration">X11 configuration</a></h2>
+      <div style="margin-left: 20px;">
+        <h3><a name="xrequirements">X Configuration Requirements</a></h3>
+        <div style="margin-left: 40px;">
+          <p>
+            Since I wanted to take full advantage of the ATI card on this box, I moved off of the open source driver it uses out of the box and instead used the fglrx driver from ATI.  I used the instructions from this page : <a href = "http://wiki.cchtml.com/index.php/Ubuntu_Edgy_Installation_Guide"> Ubuntu Edgy Installation Guide </a>  from the Unofficial ATI Linux Driver Wiki.  For quick reference I've included the info here, but you should probably refer to the source if you run into problems.
+          </p>
+  
+</p>
+</div><a name="Disable_Composite_Extension"></a><h3> Disable Composite Extension </h3>
+<p>In Ubuntu Edgy the Composite extension is enabled by default, however, <i>fglrx</i> does not yet support Composite with DRI. In order to disable Composite you have to edit the <i>xorg.conf</i> file:
+
+</p>
+<pre>sudo gedit /etc/X11/xorg.conf</pre>
+<p>and add these lines at the end of the file:
+</p>
+<table width="75%" cellpadding="0" cellspacing="0" style="background-color: #fff2f2; border: solid 1px #ffbfbf;">
+<tr>
+<td style="background-color: #ffafaf; border-bottom: 1px solid #888;"> <font size="-1"><b>File:</b> /etc/X11/xorg.conf</font>
+</td></tr>
+<tr>
+<td>
+<pre>Section &quot;Extensions&quot;
+
+        Option  &quot;Composite&quot; &quot;Disable&quot;
+EndSection</pre>
+</td></tr></table>
+<a name="Installing_the_driver"></a><h3> Installing the driver </h3>
+<p>Make sure the <i>restricted</i> repository is enabled in <i>/etc/apt/sources.list</i> or this guide will not work!
+
+</p>
+<pre>
+sudo apt-get update
+sudo apt-get install linux-restricted-modules-$(uname -r) #Okay if it is already installed
+sudo apt-get install xorg-driver-fglrx
+sudo depmod -a
+sudo aticonfig --initial
+sudo aticonfig --overlay-type=Xv
+</pre>
+<p>Now Reboot your system:
+</p>
+<pre>
+sudo shutdown -r now
+</pre>
+<p>An <b>alternative</b> to the <b>aticonfig --initial</b> command is to edit <i>/etc/X11/xorg.conf</i> and replace the string "ati" with "fglrx" in the "Device" section. This way you won't lose your old "Screen" and "Monitor" settings. Afterwards you can use aticonfig for setting overlay etc.
+
+</p>
+<a name="Confirm_that_it_works"></a><h3> Confirm that it works </h3>
+<pre>
+fglrxinfo
+display:&nbsp;:0.0  screen: 0
+OpenGL vendor string: ATI Technologies Inc.
+OpenGL renderer string: RADEON 9600 Generic
+OpenGL version string: 2.0.6011 (8.28.8)
+</pre>
+
+</td></tr></table>
+</div>
+      <h2><a name="general">General Use</a></h2>
+      <div style="margin-left: 20px;">
+        <p><ul>
+
+          <li>Hibernate seems to work fine out of the box.  
+	  <li>Support for the volume buttons, brightness and worklight all work out of the box with the appropriate On Screen Display	.
+</ul>
+        </p>
+ 
+        </div>
+      </div>
+
+      <h2><a name="contentinfo">Content Info</a></h2>
+      <div style="margin-left: 20px;">
+        <p>
+          These are the steps I took to setup my system.  There are NO GUARANTEES or WARRENTIES associated with these instructions.  Use at your own risk. With that said, if
+          something doesn't work and you figure out a different/better way,
+          please consider posting your own T60p instructions at
+          <a href="http://www.linux-on-laptops.com/">Linux on Laptops</a>
+          and/or contributing to
+          <a href="http://www.thinkwiki.org/">ThinkWiki</a>.
+        </p>
+      </div>
+
+      <h2><a name="resources">Resources</a></h2>
+      <div style="margin-left: 20px;">
+	<p> I found the following sites useful when I was building my system:
+        <ul>
+<li><a href="http://www.subakutty.net/linux/ubuntu_6.06_t60p.html">Installing Ubuntu 6.06 (Dapper) on a Thinkpad T60p</a>
+<li><a href = "http://wiki.cchtml.com/index.php/Ubuntu_Edgy_Installation_Guide"> ATI Driver -- Ubuntu Edgy Installation Guide </a> 
+<li><a href="http://www.kraus.tk/installnotes/T60/ThinkPad-T60.htm">IBM/Lenovo ThinkPad T60 (Model 2007-63g)</a>
+<li><a href="http://vizzzion.org/?id=t60">Running Linux on the Lenovo Thinkpad T60</a>
+
+
+
+	</ul>
+        </p>
+ 
+        </div>
+      </div>
+      <center><a href="http://www.linux-on-laptops.com/">
+	<img 
+	src="http://www.linux-on-laptops.com/images/button2.gif" 
+	alt="Linux On Laptops" 
+	width="90" 
+	height="35" 
+	border="0">
+	</a></center>
+  </body></html>
