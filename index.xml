@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jay Palat</title>
-    <link>localhost:1313/</link>
+    <link>jay.palat.net/</link>
     <description>Recent content on Jay Palat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="jay.palat.net/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
